@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './reducers';
 
 
 @NgModule({
@@ -16,7 +20,10 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([]),
+    AuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
