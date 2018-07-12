@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)='submit()'>
+  <p>
+    <mat-checkbox formControlName="isValidPassword">Valid password</mat-checkbox>
+  </p>
+  <p class='login-button'>
+    <mat-spinner
+      *ngIf='pending'
+      [mode]="indeterminate">
+    </mat-spinner>
+    <button type='submit' mat-button>Login</button>
+  </p>
+</form>

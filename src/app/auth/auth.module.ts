@@ -1,14 +1,22 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material';
+import { reducers } from './reducers';
+import { LoginPageComponent } from './containers/login-page/login-page.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
-  declarations: []
+  declarations: [LoginPageComponent, LoginFormComponent],
+  exports: [LoginPageComponent]
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
@@ -18,9 +26,14 @@ export class AuthModule {
   }
 }
 
+const routes = [
+  {path: 'login', component: LoginPageComponent}
+];
+
 @NgModule({
   imports: [
     AuthModule,
+    RouterModule.forChild(routes),
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthModule])
   ]
