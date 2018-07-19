@@ -2,11 +2,15 @@
   <p>
     <mat-checkbox formControlName="isValidPassword">Valid password</mat-checkbox>
   </p>
+  <p *ngIf="errorMessage" class="login-error">
+  {{ errorMessage }}
+  </p>
   <p class='login-button'>
     <mat-spinner
       *ngIf='pending'
       [mode]="indeterminate">
     </mat-spinner>
-    <button type='submit' mat-button>Login</button>
+
+  <button type='submit' mat-button>Login</button>
   </p>
 </form>
