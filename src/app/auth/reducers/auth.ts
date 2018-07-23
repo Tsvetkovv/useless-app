@@ -1,5 +1,5 @@
-import { User } from '../models/user';
-import { AuthActions, AuthActionTypes } from '../actions/auth';
+import {User} from '../models/user';
+import {AuthActions, AuthActionTypes} from '../actions/auth';
 
 export interface State {
   loggedIn: boolean;
@@ -7,7 +7,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  loggedIn: false,
+  loggedIn: true, // TODO false
   user: null,
 };
 

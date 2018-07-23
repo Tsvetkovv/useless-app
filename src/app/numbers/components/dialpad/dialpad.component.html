@@ -1,0 +1,16 @@
+<mat-form-field>
+  <input class="right" [value]="value" matInput readonly>
+</mat-form-field>
+<div class="circle-container">
+  <app-dialpad-item *ngFor="let number of numbers"
+                    (click)="append(number)">
+    {{number}}
+  </app-dialpad-item>
+  <app-dialpad-item (click)="clear()">
+    <mat-icon>close</mat-icon>
+  </app-dialpad-item>
+  <app-dialpad-item (click)="append(0)">0</app-dialpad-item>
+  <app-dialpad-item (click)="confirm()">
+    <mat-icon>check</mat-icon>
+  </app-dialpad-item>
+</div>

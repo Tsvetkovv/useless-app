@@ -1,0 +1,9 @@
+.circle-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}
+
+.right {
+  text-align: right;
+}
