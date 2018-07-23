@@ -7,7 +7,6 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {AppComponent} from './core/containers/app/app.component';
-import {HomeComponent} from './pages/home/home.component';
 
 import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
@@ -15,12 +14,11 @@ import {CoreModule} from './core/core.module';
 
 import {reducers} from './reducers';
 import {environment} from '../environments/environment';
+import {NumbersModule} from './numbers/numbers.module';
 
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     BrowserModule,
@@ -34,6 +32,7 @@ import {environment} from '../environments/environment';
     EffectsModule.forRoot([]),
     CoreModule.forRoot(),
     AuthModule.forRoot(),
+    NumbersModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
