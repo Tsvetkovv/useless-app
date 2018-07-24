@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {Subject} from 'rxjs/Subject';
 import * as fromNumbers from '../../reducers/numbers';
 import * as Numbers from '../../actions/numbers';
 
@@ -9,13 +10,13 @@ import * as Numbers from '../../actions/numbers';
   styleUrls: ['./numbers.component.css']
 })
 export class NumbersComponent {
-  lastEnteredNumber: number;
+  enteredNumbers$ = new Subject<number>();
 
   constructor(private store: Store<fromNumbers.State>) {
   }
 
   onSubmitNumber(number: number) {
-    this.lastEnteredNumber = number;
+    this.enteredNumbers$.next(number);
     this.store.dispatch(new Numbers.Submit({
       date: new Date(),
       value: number

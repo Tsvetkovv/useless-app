@@ -1,20 +1,28 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.css']
 })
-export class LogComponent implements OnChanges {
+export class LogComponent implements OnInit, OnDestroy {
   @Input()
-  lastItem: number;
+  enteredNumbers$: Observable<number>;
   logItems: number[] = [];
+  subscription: Subscription;
 
-  ngOnChanges(changes: SimpleChanges) {
-    const {currentValue} = changes.lastItem;
-    if (currentValue !== undefined) {
-      this.logItems.push(currentValue);
-    }
+  ngOnInit() {
+    this.subscription = this.enteredNumbers$.subscribe(next => {
+      if (next !== undefined) {
+        this.logItems.push(next);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
