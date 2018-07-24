@@ -1,8 +1,16 @@
 <mat-tab-group>
   <mat-tab label="Enter the number">
-    <app-dialpad></app-dialpad>
+    <div class="tab">
+      <mat-card class="widget">
+        <app-dialpad (submit)="onSubmitNumber($event)"></app-dialpad>
+      </mat-card>
+      <mat-card class="widget">
+        <mat-card-title>You have just entered</mat-card-title>
+        <app-log [lastItem]="lastEnteredNumber"></app-log>
+      </mat-card>
+    </div>
   </mat-tab>
   <mat-tab label="Stats">
-    <app-entering-section></app-entering-section>
+    <div class="tab"></div>
   </mat-tab>
 </mat-tab-group>

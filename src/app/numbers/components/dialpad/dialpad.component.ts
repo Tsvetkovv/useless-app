@@ -23,8 +23,8 @@ export class DialpadComponent implements OnInit {
   confirm() {
     if (this.value) {
       this.submit.emit(+this.value);
+      this.clear();
     }
-    console.log(+this.value);
   }
 
   clear() {

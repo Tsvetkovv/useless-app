@@ -11,10 +11,10 @@ import {AppComponent} from './core/containers/app/app.component';
 import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './core/core.module';
+import {NumbersModule} from './numbers/numbers.module';
 
 import {reducers} from './reducers';
 import {environment} from '../environments/environment';
-import {NumbersModule} from './numbers/numbers.module';
 
 
 @NgModule({
