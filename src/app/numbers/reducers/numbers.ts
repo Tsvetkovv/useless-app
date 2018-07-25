@@ -1,6 +1,6 @@
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {UserNumber} from '../models/user-number';
 import {NumbersActions, NumbersActionTypes} from '../actions/numbers';
-import {createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface State {
   numbers: UserNumber[];
@@ -25,6 +25,8 @@ export function reducer(
           action.payload,
         ],
       };
+    default:
+      return state;
   }
 }
 
@@ -32,5 +34,5 @@ const selectNumbersState = createFeatureSelector<State>('numbers');
 
 export const getNumbers = createSelector(
   selectNumbersState,
-  (state: State) => state ? state.numbers : undefined
+  (state: State) => state.numbers
 );

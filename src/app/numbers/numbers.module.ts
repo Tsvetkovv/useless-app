@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 import {MaterialModule} from '../material/material.module';
-import {reducers} from '../reducers';
+import {reducer} from './reducers/numbers';
 import {NumbersComponent} from './containers/numbers/numbers.component';
 import {LogComponent} from './components/log/log.component';
 import {DialpadComponent} from './components/dialpad/dialpad.component';
@@ -33,7 +33,7 @@ export class NumbersModule {
 @NgModule({
   imports: [
     NumbersModule,
-    StoreModule.forFeature('numbers', reducers),
+    StoreModule.forFeature('numbers', reducer),
   ]
 })
 export class RootNumbersModule {
