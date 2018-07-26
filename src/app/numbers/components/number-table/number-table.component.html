@@ -1,13 +1,16 @@
-<mat-table [dataSource]="items">
+<mat-table *ngIf="items && items.length" matSort [dataSource]="items">
   <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.date | date:'medium'}}</mat-cell>
+    <mat-header-cell class="date" mat-sort-header *matHeaderCellDef>Date</mat-header-cell>
+    <mat-cell class="date" *matCellDef="let element">{{element.date | date:'short'}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="value">
-    <mat-header-cell *matHeaderCellDef>Value</mat-header-cell>
+    <mat-header-cell mat-sort-header *matHeaderCellDef>Value</mat-header-cell>
     <mat-cell *matCellDef="let element">{{element.value}}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+<div *ngIf="!(items && items.length)">
+  There are no numbers :(
+</div>

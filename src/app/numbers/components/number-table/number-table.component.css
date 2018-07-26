@@ -1,0 +1,8 @@
+.date {
+  width: 200px;
+}
+
+.mat-cell:last-child,
+.mat-header-cell:last-child {
+  text-align: right;
+}

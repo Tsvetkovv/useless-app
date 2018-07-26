@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {Subject} from 'rxjs/Subject';
 import * as fromNumbers from '../../reducers/numbers';
 import * as Numbers from '../../actions/numbers';
@@ -10,6 +10,7 @@ import * as Numbers from '../../actions/numbers';
   styleUrls: ['./numbers.component.css']
 })
 export class NumbersComponent {
+  numbers$ = this.store.pipe(select(fromNumbers.getNumbers));
   enteredNumbers$ = new Subject<number>();
 
   constructor(private store: Store<fromNumbers.State>) {
