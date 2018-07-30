@@ -8,6 +8,7 @@ import {LogComponent} from './components/log/log.component';
 import {DialpadComponent} from './components/dialpad/dialpad.component';
 import {NumberTableComponent} from './components/number-table/number-table.component';
 import {DialpadItemComponent} from './components/dialpad-item/dialpad-item.component';
+import {NumbersChartComponent} from './components/numbers-chart/numbers-chart.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {DialpadItemComponent} from './components/dialpad-item/dialpad-item.compo
     DialpadComponent,
     NumberTableComponent,
     DialpadItemComponent,
+    NumbersChartComponent,
   ]
 })
 export class NumbersModule {
