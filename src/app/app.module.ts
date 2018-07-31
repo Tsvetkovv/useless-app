@@ -3,7 +3,8 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EffectsModule} from '@ngrx/effects';
-import {StoreModule} from '@ngrx/store';
+import {ActionReducer, MetaReducer, StoreModule} from '@ngrx/store';
+import {localStorageSync} from 'ngrx-store-localstorage';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {AppComponent} from './core/containers/app/app.component';
@@ -16,6 +17,14 @@ import {NumbersModule} from './numbers/numbers.module';
 import {reducers} from './reducers';
 import {environment} from '../environments/environment';
 
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({
+    keys: ['auth', 'numbers'],
+    rehydrate: true,
+  })(reducer);
+}
+
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [],
@@ -24,7 +33,7 @@ import {environment} from '../environments/environment';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({
       name: 'Useless app DevTools',
       logOnly: environment.production,

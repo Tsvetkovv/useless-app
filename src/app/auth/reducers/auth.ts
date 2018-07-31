@@ -7,7 +7,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  loggedIn: true, // TODO false
+  loggedIn: false,
   user: null,
 };
 
