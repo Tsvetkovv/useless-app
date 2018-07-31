@@ -5,11 +5,13 @@ import {NumbersActions, NumbersActionTypes} from '../actions/numbers';
 export interface State {
   numbers: UserNumber[];
   numberIdsSinceLastVisit: number[];
+  hasLoaded: boolean;
 }
 
 const initialState: State = {
   numbers: [],
   numberIdsSinceLastVisit: [],
+  hasLoaded: false,
 };
 
 export function reducer(
@@ -25,6 +27,12 @@ export function reducer(
           action.payload,
         ],
       };
+    case NumbersActionTypes.LoadSuccess:
+      return {
+        ...state,
+        numbers: action.payload,
+        hasLoaded: true,
+      };
     default:
       return state;
   }
@@ -35,4 +43,9 @@ const selectNumbersState = createFeatureSelector<State>('numbers');
 export const getNumbers = createSelector(
   selectNumbersState,
   (state: State) => state.numbers
+);
+
+export const getHasLoaded = createSelector(
+  selectNumbersState,
+  (state: State) => state.hasLoaded
 );

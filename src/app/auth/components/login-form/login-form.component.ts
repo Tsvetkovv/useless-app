@@ -1,13 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Authenticate } from '../../models/user';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Authenticate} from '../../models/user';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
+  @Input() errorMessage: string | null;
+  @Output() submitted = new EventEmitter<Authenticate>();
+  form: FormGroup = new FormGroup({
+    isValidPassword: new FormControl(''),
+  });
+
   @Input()
   set pending(isPending: boolean) {
     if (isPending) {
@@ -15,19 +21,6 @@ export class LoginFormComponent implements OnInit {
     } else {
       this.form.enable();
     }
-  }
-
-  @Input() errorMessage: string | null;
-
-  @Output() submitted = new EventEmitter<Authenticate>();
-
-  form: FormGroup = new FormGroup({
-    isValidPassword: new FormControl(''),
-  });
-
-  constructor() { }
-
-  ngOnInit() {
   }
 
   submit() {
