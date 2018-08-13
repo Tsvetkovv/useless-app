@@ -1,4 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
+import * as d3 from 'd3';
 import {UserNumber} from '../models/user-number';
 import {NumbersActions, NumbersActionTypes} from '../actions/numbers';
 
@@ -42,7 +43,27 @@ const selectNumbersState = createFeatureSelector<State>('numbers');
 
 export const getNumbers = createSelector(
   selectNumbersState,
-  (state: State) => state.numbers
+  (state: State) => state.numbers.sort((a, b) => a.date.getDate() - b.date.getDate())
+);
+
+export const getTopNumbersPerDay = createSelector(
+  getNumbers,
+  (numbers) => {
+    return d3.nest<UserNumber, number>()
+    // rounding to day
+      .key((d: UserNumber) => new Date(d.date).setHours(0, 0, 0, 0).toString())
+      .key((d: UserNumber) => d.value.toString())
+      .rollup((values) => values.length)
+      .entries(numbers)
+      .map((item: { key: string, values: { key: string, value: number }[] }) => {
+        return {
+          // day
+          date: new Date(+item.key),
+          // most frequent number for this day
+          value: +item.values.sort((a, b) => d3.descending(a.value, b.value))[0].key
+        };
+      });
+  }
 );
 
 export const getHasLoaded = createSelector(

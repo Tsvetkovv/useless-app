@@ -13,6 +13,7 @@ import {UserNumber} from '../../models/user-number';
 })
 export class NumbersComponent implements OnInit {
   numbers$: Observable<UserNumber[]> = this.store$.pipe(select(fromNumbers.getNumbers));
+  topNumbers$: Observable<UserNumber[]> = this.store$.pipe(select(fromNumbers.getTopNumbersPerDay));
   enteredNumbers$ = new Subject<number>();
 
   constructor(

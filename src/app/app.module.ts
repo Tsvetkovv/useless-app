@@ -19,7 +19,7 @@ import {environment} from '../environments/environment';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
-    keys: ['auth', 'numbers'],
+    keys: ['auth'],
     rehydrate: true,
   })(reducer);
 }
