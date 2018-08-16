@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="onChangeTab($event)" (animationDone)="onAnimationDone()">
   <mat-tab label="Enter the number">
     <div class="tab">
       <mat-card class="widget">

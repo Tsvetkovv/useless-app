@@ -81,19 +81,24 @@ export class NumbersChartComponent implements AfterViewInit, OnChanges {
   }
 
   drawBars() {
-    console.log(this.data);
     this.chart.selectAll('.bar')
       .data(this.data)
       .enter().append('rect')
       .attr('class', 'bar')
       .attr('fill', '#3f51b5')
       .attr('x', (d) => this.xScale(this.formatDate(d.date)))
-      // .attr('y', this.height)
+      .attr('y', this.height - this.margin.bottom)
       .attr('width', this.xScale.bandwidth())
-      .attr('height', 0)
-      // .transition()
-      .attr('y', (d) => this.yScale(d.value))
-      .attr('height', (d) => this.height - this.margin.bottom - this.yScale(d.value));
+      .attr('height', 0);
+
+  }
+
+  // after tab is fully viewed
+  animate() {
+    this.chart.selectAll('.bar')
+      .transition()
+      .attr('y', (d: Datum) => this.yScale(d.value))
+      .attr('height', (d: Datum) => this.height - this.margin.bottom - this.yScale(d.value));
   }
 
   ngOnChanges() {
