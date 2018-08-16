@@ -14,7 +14,7 @@
     <div class="tab">
       <mat-card class="widget">
         <mat-card-title>In 5 days</mat-card-title>
-        <app-numbers-chart [data]="topNumbers$ | async"></app-numbers-chart>
+        <app-numbers-chart #chart [data]="topNumbers$ | async"></app-numbers-chart>
       </mat-card>
       <mat-card class="widget">
         <mat-card-title>You have just entered</mat-card-title>
