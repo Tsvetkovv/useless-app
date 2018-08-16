@@ -56,11 +56,14 @@ export const getTopNumbersPerDay = createSelector(
       .rollup((values) => values.length)
       .entries(numbers)
       .map((item: { key: string, values: { key: string, value: number }[] }) => {
+        // get lower value if frequents are equal
+        const sortedByFreq = item.values.sort((a, b) => b.value - a.value || +a.key - +b.key);
+
         return {
           // day
           date: new Date(+item.key),
           // most frequent number for this day
-          value: +item.values.sort((a, b) => d3.descending(a.value, b.value))[0].key
+          value: +sortedByFreq[0].key
         };
       });
   }
