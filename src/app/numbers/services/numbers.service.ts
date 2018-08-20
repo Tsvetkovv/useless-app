@@ -7,7 +7,7 @@ import {UserNumber} from '../models/user-number';
 export class NumbersService {
   private static builder() {
     return class Builder {
-      private _days = 5;
+      private _days = 4; // before today
       private _count = this._days * 10;
       private _valueLimit = 10;
 
@@ -32,6 +32,7 @@ export class NumbersService {
 
       build(): UserNumber[] {
         const today = new Date();
+        today.setHours(0, 0, 0, 0);
         return new Array(this._count).fill(null).map(() => ({
           date: Builder.randomDate(new Date(new Date().setDate(today.getDate() - this._days)), today),
           value: Math.floor(Math.random() * (this._valueLimit + 1)),

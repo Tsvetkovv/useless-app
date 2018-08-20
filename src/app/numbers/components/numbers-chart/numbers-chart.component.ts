@@ -98,6 +98,8 @@ export class NumbersChartComponent implements AfterViewInit, OnChanges {
     this.chart.selectAll('.bar')
       .transition()
       .attr('y', (d: Datum) => this.yScale(d.value))
+      .attr('x', (d: Datum) => this.xScale(this.formatDate(d.date)))
+      .attr('width', this.xScale.bandwidth())
       .attr('height', (d: Datum) => this.height - this.margin.bottom - this.yScale(d.value));
   }
 
